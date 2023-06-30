@@ -71,6 +71,7 @@
         android:background="@drawable/blue_button"
         android:text="Insert to Database"
         android:textStyle="bold"
+        android:onClick="insertEntries"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_update_to_database"
         app:layout_constraintEnd_toStartOf="@+id/btn_update_to_database"
         app:layout_constraintHorizontal_bias="0.517"
