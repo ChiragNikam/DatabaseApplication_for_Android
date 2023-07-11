@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.example.myapplication.Data.DbHandler;
@@ -16,6 +15,7 @@ import com.example.myapplication.R;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     EditText editText_Type, editText_Amount;
     DbHandler dbHandler = new DbHandler(MainActivity.this);
     @Override
@@ -24,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Inserting Entries in table
+
 //        insertEntries("Daal", "400");
 //        insertEntries("Chawal", "300");
 //        insertEntries("Aata", "600");
 //        Log.d("insert", "data inserted sucessfully.");
+
 
         // Reading Entries of table
         readEntries();
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // Update Entries of table
         updateEntries(15, "Desi Daru, with chakna", "125");
         updateEntries(17, "Pan wali ice cream", "35");
+
 
         // Deleting entries of table
         dbHandler.deleteEntries(3);
@@ -47,13 +50,15 @@ public class MainActivity extends AppCompatActivity {
         String exp_type, exp_amount;
         exp_type = editText_Type.getText().toString();
         exp_amount = editText_Amount.getText().toString();
-
+    
         ExpenseEntries exp_dal = new ExpenseEntries();
         exp_dal.setExp_type(exp_type);    // setting values of object
         exp_dal.setExp_amount(exp_amount);
 
         dbHandler.addEntry(exp_dal);    // sending object as an argument to insert these values to table
+
         readEntries();
+
     }
 
     public void readEntries() {
