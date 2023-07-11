@@ -24,7 +24,9 @@ public class DbHandler extends SQLiteOpenHelper {
                 DbParameters.COL_ID + " INTEGER PRIMARY KEY, " +
                 DbParameters.COL_EXP_TYPE + " TEXT, " + DbParameters.COL_EXP_AMOUNT + " TEXT)";
         Log.d("createTable", "table is created successfully " + create_table);
+
         db.execSQL(create_table);
+
     }
 
     @Override
@@ -81,4 +83,12 @@ public class DbHandler extends SQLiteOpenHelper {
         return db.update(DbParameters.TAB_NAME, values, DbParameters.COL_ID + "=?",
                 new String[]{String.valueOf(exp.getId())});   // this function will return no of affected rows in table
     }
+
+    // DELETE Query
+    public void deleteEntries(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbParameters.TAB_NAME, DbParameters.COL_ID+="=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
 }

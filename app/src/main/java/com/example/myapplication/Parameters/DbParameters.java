@@ -6,6 +6,7 @@ public class DbParameters {
     public static final String TAB_NAME = "exp_records";
 
     // Keys and columns of Table
+
     public static final String COL_ID = "id";  // Primary key
     public static final String COL_EXP_TYPE = "exp_type";
     public static final String COL_EXP_AMOUNT = "exp_amount";

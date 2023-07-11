@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.widget.Toast;
 
 import com.example.myapplication.Data.DbHandler;
@@ -13,6 +15,8 @@ import com.example.myapplication.R;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText editText_Type, editText_Amount;
     DbHandler dbHandler = new DbHandler(MainActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Inserting Entries in table
-        insertEntries("Daal", "400");
-        insertEntries("Chawal", "300");
-        insertEntries("Aata", "600");
-        Log.d("insert", "data inserted sucessfully.");
+
+//        insertEntries("Daal", "400");
+//        insertEntries("Chawal", "300");
+//        insertEntries("Aata", "600");
+//        Log.d("insert", "data inserted sucessfully.");
+
 
         // Reading Entries of table
         readEntries();
@@ -32,15 +38,27 @@ public class MainActivity extends AppCompatActivity {
         updateEntries(15, "Desi Daru, with chakna", "125");
         updateEntries(17, "Pan wali ice cream", "35");
 
+
+        // Deleting entries of table
+        dbHandler.deleteEntries(3);
     }
 
-    public void insertEntries(String exp_type, String exp_amount){
-
+    public void insertEntries(View view){
+        // getting input data from editText
+        editText_Type = findViewById(R.id.editTextExp_Type);
+        editText_Amount = findViewById(R.id.editTextExp_Amount);
+        String exp_type, exp_amount;
+        exp_type = editText_Type.getText().toString();
+        exp_amount = editText_Amount.getText().toString();
+    
         ExpenseEntries exp_dal = new ExpenseEntries();
         exp_dal.setExp_type(exp_type);    // setting values of object
         exp_dal.setExp_amount(exp_amount);
 
         dbHandler.addEntry(exp_dal);    // sending object as an argument to insert these values to table
+
+        readEntries();
+
     }
 
     public void readEntries() {
