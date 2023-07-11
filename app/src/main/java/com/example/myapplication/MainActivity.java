@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         updateEntries(15, "Desi Daru, with chakna", "125");
         updateEntries(17, "Pan wali ice cream", "35");
 
+        // Deleting entries of table
+        dbHandler.deleteEntries(3);
     }
 
     public void insertEntries(View view){
